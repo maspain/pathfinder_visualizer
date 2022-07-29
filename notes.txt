@@ -1,0 +1,6 @@
+Map input format:
+
+. = free space
+# = wall
+
+Plan to do random maze generation 

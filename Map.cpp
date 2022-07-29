@@ -22,7 +22,7 @@ void Map::readMap() {
     cin >> height >> width;
     map.resize(height, std::vector<bool>(width));
 
-    std::getline(std::cin >> std::ws, buffer);
+    //std::getline(std::cin >> std::ws, buffer);
     while (std::getline(input_file, buffer)) {
         // DEBUG std::cout << buffer << "\n"; 
         for (size_t i = 0; i < buffer.size(); i++) {
@@ -42,22 +42,54 @@ void Map::readMap() {
 
 void Map::printMap() {
     for (size_t i = 0; i < map.size(); i++) {
+        cout << i << " | ";
         for (size_t j = 0; j < map[0].size(); j++) {
             
             std::cout << map[i][j];
+            cout << " ";
         }
         std::cout << "\n";
     }
+    cout << "    ";
+    for (size_t i = 0; i < 2*map[0].size(); i++) {
+        cout << "_";
+    }
+    cout << "\n";
+    cout << "    ";
+    for (size_t i = 0; i < map[0].size(); i++) {
+        cout << i;
+        cout << " ";
+    }
+    cout << "\n";
 } 
 
 void Map::getInitialPositions() {
     cout << "Enter an inital coordinate: ";
-    cin >> start.x;
-    cin >> start.y;
+    cin >> start.row;
+    cin >> start.col;
+    while (isWall(start.row, start.col)) {
+        cout << "Coordinate entered is a wall, please try again: ";
+        cin >> start.row;
+        cin >> start.col;
+    }
     cout << "\n";
+
     cout << "Enter a final coordinate: ";
-    cin >> finish.x;
-    cin >> finish.y;
-    cout << "\n";
+    cin >> finish.row;
+    cin >> finish.col;
+    while (isWall(finish.row, finish.col)) {
+        cout << "Coordinate entered is a wall, please try again: ";
+        cin >> finish.row;
+        cin >> finish.col;
+    }
+    cout << "\n";    
+}
+// isWall: return value of 1 indicates wall at map[row][col]
+bool Map::isWall(int row, int col) {
+    if (map[row][col]) {
+        return 1;
+    }
+    // default return, indicates free space
+    return 0;
 }
 

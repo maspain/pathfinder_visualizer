@@ -1,8 +1,8 @@
-#include "Pathfinder.h"
-
+#include "AStar.h"
+#include "Map.h"
 
 int main(int argc, char ** argv) {
-    Pathfinder pf;
+    Map pf;
     pf.readMap();
     pf.printMap();
     pf.getInitialPositions();

@@ -7,19 +7,19 @@
 #include <fstream>
 #include "Map.h"
 
-
-struct Coordinate {
-    int x;
-    int y;
-};
-
-class AStar {
+class AStar: public Map {
 public:
+    AStar(Map in_maze)
+    : maze(in_maze) {}
+    void initAlgorithim() {
+
+    }
+
 private:
     class Node {
         public:
             Node()
-            : g_cost(0), h_cost(0) {}
+            : g_cost(0), h_cost(0){}
             
         private:
         /*  
@@ -29,6 +29,7 @@ private:
         */
         int g_cost;
         int h_cost; 
+        int f_cost;
     };
     // currently a map representing where the walls are located (0 = free space; 1 = wall)
     
@@ -37,5 +38,7 @@ private:
     // row = space / size
     // col = space % size
     Map maze;
+    Coordinate start;
+    Coordinate finish;
 };
 #endif /* ASTAR_H */
