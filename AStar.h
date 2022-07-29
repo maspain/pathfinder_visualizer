@@ -1,7 +1,16 @@
+#ifndef PATHFINDER_H
+#define PATHFINDER_H
+
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
+
+
+struct Coordinate {
+    int x;
+    int y;
+};
 
 class Pathfinder {
 public:
@@ -12,14 +21,9 @@ private:
     class Node {
         public:
             Node()
-            :east(NULL), north(NULL), south(NULL), west(){}
-
+            : g_cost(0), h_cost(0) {}
+            
         private:
-        Node* east;
-        Node* north;
-        Node* south;
-        Node* west;
-        
         /*  
         *   G cost represents distance from starting node
         *   H cost represents distance from end node
@@ -39,3 +43,4 @@ private:
     int start;
     int finish;
 };
+#endif /* PATHFINDER_H */

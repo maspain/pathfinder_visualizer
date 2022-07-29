@@ -1,4 +1,4 @@
-#include "Pathfinder.h"
+#include "AStar.h"
 
 using std::cout;
 using std::cin;
@@ -18,13 +18,12 @@ void Pathfinder::readMap() {
         exit(1);
     }
 
-    std::cin >> height >> width;
+    cin >> height >> width;
     map.resize(height, std::vector<bool>(width));
 
     std::getline(std::cin >> std::ws, buffer);
     while (std::getline(input_file, buffer)) {
-        
-        std::cout << buffer << "\n";
+        // DEBUG std::cout << buffer << "\n"; 
         for (size_t i = 0; i < buffer.size(); i++) {
 
             //map is a 2D vector of boolean values representing the maze: 1 = wall; 0 = path
