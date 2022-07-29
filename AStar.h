@@ -1,10 +1,11 @@
-#ifndef PATHFINDER_H
-#define PATHFINDER_H
+#ifndef ASTAR_H
+#define ASTAR_H
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "Map.h"
 
 
 struct Coordinate {
@@ -12,11 +13,8 @@ struct Coordinate {
     int y;
 };
 
-class Pathfinder {
+class AStar {
 public:
-    void readMap();
-    void printMap();
-    void getInitialPositions();
 private:
     class Node {
         public:
@@ -31,16 +29,13 @@ private:
         */
         int g_cost;
         int h_cost; 
-        
     };
     // currently a map representing where the walls are located (0 = free space; 1 = wall)
-    std::vector<std::vector<bool>> map;
     
     // represents index in map if each element was given a unique sequential integer
     // space = row * num_rows + col
     // row = space / size
     // col = space % size
-    int start;
-    int finish;
+    Map maze;
 };
-#endif /* PATHFINDER_H */
+#endif /* ASTAR_H */
